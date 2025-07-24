@@ -2,13 +2,49 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>اختبار - تطوير واجهات المواقع</title>
+  <title>كورس تعلم الفرونت إند - Frontend Academy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ابدأ رحلتك في تعلم تطوير واجهات المواقع مع أحدث التقنيات والأدوات العصرية">
+  
+  <!-- خطوط جميلة -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
   
   <style>
+    :root {
+      /* Neon Colors */
+      --neon-blue: #00f2ff;
+      --neon-purple: #8338ec;
+      --neon-pink: #ff006e;
+      --neon-green: #06ffa5;
+      --neon-orange: #ff8500;
+      
+      /* Dark Theme */
+      --dark-void: #000000;
+      --dark-space: #0a0a0f;
+      --dark-matter: #1a1a2e;
+      --dark-navy: #16213e;
+      
+      /* Glass Effects */
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-glow: rgba(255, 255, 255, 0.05);
+      
+      /* Text Colors */
+      --text-bright: #ffffff;
+      --text-dim: #b0b0b0;
+      --text-shadow: #666666;
+      
+      /* Effects */
+      --glow-soft: 0 0 15px;
+      --glow-medium: 0 0 30px;
+      --glow-intense: 0 0 45px;
+      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --border-radius: 20px;
+      --border-radius-lg: 30px;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -17,231 +53,1267 @@
 
     body {
       font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-      color: #ffffff;
+      background: linear-gradient(135deg, var(--dark-void) 0%, var(--dark-space) 50%, var(--dark-matter) 100%);
+      color: var(--text-bright);
       line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
       min-height: 100vh;
     }
 
-    .test-header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 40px 20px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    /* Animated Grid Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: -2;
+      animation: grid-move 25s linear infinite;
     }
 
-    .test-title {
-      font-size: clamp(24px, 5vw, 48px);
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    @keyframes grid-move {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(60px, 60px); }
     }
 
-    .test-subtitle {
-      font-size: 18px;
-      color: rgba(255,255,255,0.9);
-      font-weight: 300;
+    /* Floating Orbs */
+    .floating-orbs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 20px;
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--neon-blue), transparent);
+      animation: float-orb 15s ease-in-out infinite;
+      filter: blur(2px);
+      opacity: 0.6;
     }
 
-    .status-card {
-      background: rgba(255,255,255,0.1);
+    .orb:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: 80%;
+      background: radial-gradient(circle at 30% 30%, var(--neon-purple), transparent);
+      animation-delay: 0s;
+    }
+
+    .orb:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      top: 60%;
+      left: 10%;
+      background: radial-gradient(circle at 30% 30%, var(--neon-pink), transparent);
+      animation-delay: -5s;
+    }
+
+    .orb:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      top: 30%;
+      left: 40%;
+      background: radial-gradient(circle at 30% 30%, var(--neon-green), transparent);
+      animation-delay: -10s;
+    }
+
+    @keyframes float-orb {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1);
+        opacity: 0.3;
+      }
+      50% { 
+        transform: translateY(-80px) rotate(180deg) scale(1.2);
+        opacity: 0.7;
+      }
+    }
+
+    /* REVOLUTIONARY HEADER */
+    .header {
+      background: linear-gradient(135deg, var(--dark-space) 0%, var(--dark-matter) 50%, var(--dark-navy) 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glow-medium) rgba(0, 242, 255, 0.1);
+      border-bottom: 2px solid var(--glass-border);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 20px;
-      padding: 40px;
-      margin: 40px 0;
-      text-align: center;
     }
 
-    .status-success {
-      border-color: rgba(0,255,136,0.5);
-      background: rgba(0,255,136,0.1);
+    /* Particle System */
+    .particle-system {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    .status-icon {
-      font-size: 64px;
-      margin-bottom: 20px;
-      display: block;
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: particle-float 8s ease-in-out infinite;
     }
 
-    .status-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: #00ff88;
+    .particle:nth-child(1) {
+      width: 6px;
+      height: 6px;
+      background: var(--neon-blue);
+      top: 20%;
+      left: 15%;
+      box-shadow: var(--glow-soft) var(--neon-blue);
+      animation-delay: 0s;
     }
 
-    .status-text {
-      font-size: 18px;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.6;
+    .particle:nth-child(2) {
+      width: 4px;
+      height: 4px;
+      background: var(--neon-purple);
+      top: 70%;
+      left: 85%;
+      box-shadow: var(--glow-soft) var(--neon-purple);
+      animation-delay: -2s;
     }
 
-    .navigation-test {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin: 60px 0;
+    .particle:nth-child(3) {
+      width: 8px;
+      height: 8px;
+      background: var(--neon-pink);
+      top: 40%;
+      left: 60%;
+      box-shadow: var(--glow-soft) var(--neon-pink);
+      animation-delay: -4s;
     }
 
-    .nav-card {
-      background: rgba(255,255,255,0.08);
+    .particle:nth-child(4) {
+      width: 3px;
+      height: 3px;
+      background: var(--neon-green);
+      top: 80%;
+      left: 25%;
+      box-shadow: var(--glow-soft) var(--neon-green);
+      animation-delay: -6s;
+    }
+
+    @keyframes particle-float {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(-30px) rotate(180deg);
+        opacity: 1;
+      }
+    }
+
+    /* Navigation */
+    .nav-container {
+      position: relative;
+      z-index: 10;
+      padding: 20px 30px;
+    }
+
+    .mobile-toggle {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--glass-bg);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      transition: all 0.3s ease;
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
       cursor: pointer;
+      z-index: 1001;
+      transition: var(--transition-smooth);
+      align-items: center;
+      justify-content: center;
     }
 
-    .nav-card:hover {
-      transform: translateY(-5px);
-      background: rgba(255,255,255,0.15);
-      border-color: rgba(0,242,255,0.5);
-      box-shadow: 0 10px 30px rgba(0,242,255,0.2);
+    .mobile-toggle:hover {
+      background: var(--glass-glow);
+      border-color: var(--neon-blue);
+      box-shadow: var(--glow-soft) var(--neon-blue);
+    }
+
+    .hamburger {
+      position: relative;
+      width: 24px;
+      height: 18px;
+    }
+
+    .hamburger span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--neon-blue);
+      border-radius: 1px;
+      transition: var(--transition-smooth);
+      box-shadow: var(--glow-soft) var(--neon-blue);
+    }
+
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 8px; }
+    .hamburger span:nth-child(3) { bottom: 0; }
+
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--text-bright);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 35px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      font-size: 15px;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Cairo', sans-serif;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      box-shadow: var(--glow-soft) rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.3), transparent);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--neon-blue);
+      box-shadow: var(--glow-medium) var(--neon-blue);
+      color: var(--neon-blue);
+    }
+
+    .nav-link:hover::before {
+      left: 100%;
     }
 
     .nav-icon {
-      font-size: 48px;
-      margin-bottom: 20px;
-      display: block;
+      font-size: 18px;
+      filter: drop-shadow(var(--glow-soft) currentColor);
     }
 
-    .nav-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #00f2ff;
-      margin-bottom: 10px;
-    }
-
-    .nav-desc {
-      font-size: 14px;
-      color: rgba(255,255,255,0.7);
-    }
-
-    .footer-test {
-      background: rgba(255,255,255,0.05);
-      padding: 40px 20px;
+    /* Header Content */
+    .header-content {
+      padding: 60px 30px 80px 30px;
       text-align: center;
-      margin-top: 80px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      padding: 18px 35px;
+      background: rgba(0, 242, 255, 0.1);
+      backdrop-filter: blur(25px);
+      border: 2px solid rgba(0, 242, 255, 0.3);
+      border-radius: 60px;
+      margin-bottom: 40px;
+      box-shadow: var(--glow-medium) rgba(0, 242, 255, 0.2);
+      transition: var(--transition-smooth);
+    }
+
+    .brand-badge:hover {
+      transform: scale(1.05);
+      box-shadow: var(--glow-intense) rgba(0, 242, 255, 0.4);
+    }
+
+    .brand-icon {
+      font-size: 28px;
+      margin-left: 12px;
+      filter: drop-shadow(var(--glow-soft) var(--neon-blue));
+    }
+
+    .brand-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--neon-blue);
+      text-shadow: var(--glow-soft) var(--neon-blue);
+      letter-spacing: 2px;
+    }
+
+    .hero-title {
+      font-family: 'Cairo', sans-serif;
+      font-size: clamp(32px, 8vw, 72px);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-green));
+      background-size: 400% 400%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 25px;
+      line-height: 1.1;
+      animation: gradient-shift 4s ease-in-out infinite;
+      text-shadow: var(--glow-soft) var(--neon-blue);
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-subtitle {
+      color: var(--text-dim);
+      font-size: clamp(18px, 4vw, 26px);
+      font-weight: 400;
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      line-height: 1.5;
+    }
+
+    /* CTA Buttons */
+    .cta-container {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, var(--neon-blue), #0099cc);
+      border: none;
+      color: var(--text-bright);
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      box-shadow: var(--glow-medium) rgba(0, 242, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-primary:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: var(--glow-intense) rgba(0, 242, 255, 0.6);
+    }
+
+    .cta-secondary {
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      color: var(--text-bright);
+      padding: 16px 38px;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(20px);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-secondary:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--neon-purple);
+      box-shadow: var(--glow-medium) var(--neon-purple);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-green));
+      background-size: 400% 100%;
+      animation: progress-flow 3s ease-in-out infinite;
+    }
+
+    @keyframes progress-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .section {
+      margin-bottom: 80px;
+      animation: fade-in-up 0.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .section:nth-child(1) { animation-delay: 0.1s; }
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.3s; }
+    .section:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fade-in-up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-title {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      border-radius: 2px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 40px 30px;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      transition: var(--transition-smooth);
+    }
+
+    .feature-card:hover::before {
+      left: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--neon-blue);
+      box-shadow: var(--glow-medium) rgba(0, 242, 255, 0.3);
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 25px;
+      display: block;
+      filter: drop-shadow(var(--glow-soft) var(--neon-blue));
+    }
+
+    .feature-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--neon-blue);
+      margin-bottom: 15px;
+    }
+
+    .feature-text {
+      color: var(--text-dim);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Earnings Section */
+    .earnings-section {
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(6, 255, 165, 0.1) 100%);
+      border: 2px solid rgba(0, 255, 136, 0.2);
+      border-radius: var(--border-radius-lg);
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .earnings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .earning-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: var(--border-radius);
+      padding: 40px 20px;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .earning-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+    }
+
+    .earning-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--glow-medium) var(--neon-green);
+    }
+
+    .earning-amount {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 15px;
+    }
+
+    .earning-label {
+      color: var(--text-dim);
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    /* Time Card */
+    .time-card {
+      background: linear-gradient(135deg, rgba(255, 0, 110, 0.1) 0%, rgba(131, 56, 236, 0.1) 100%);
+      border: 2px solid rgba(255, 0, 110, 0.2);
+      border-radius: var(--border-radius-lg);
+      padding: 50px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .time-highlight {
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin: 20px 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(135deg, var(--dark-matter) 0%, var(--dark-navy) 100%);
+      padding: 60px 30px;
+      text-align: center;
+      border-top: 2px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-green));
+      background-size: 400% 100%;
+      animation: gradient-shift 3s ease-in-out infinite;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--neon-blue);
+      margin-bottom: 15px;
     }
 
     .footer-text {
-      color: rgba(255,255,255,0.6);
-      font-size: 16px;
+      color: var(--text-dim);
+      font-size: 18px;
+      margin-bottom: 20px;
     }
 
+    .footer-signature {
+      font-size: 16px;
+      color: var(--text-bright);
+      font-weight: 600;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .container {
-        padding: 40px 15px;
+      .mobile-toggle {
+        display: flex;
       }
-      
-      .status-card {
-        padding: 30px 20px;
+
+      .main-nav {
+        position: fixed;
+        top: 90px;
+        left: 20px;
+        right: 20px;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(25px);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        flex-direction: column;
+        gap: 20px;
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-smooth);
+        box-shadow: var(--glow-medium) rgba(0, 0, 0, 0.5);
+        z-index: 1000;
       }
-      
-      .navigation-test {
+
+      .main-nav.show {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-link {
+        width: 100%;
+        justify-content: center;
+        padding: 18px 25px;
+        font-size: 16px;
+      }
+
+      .header-content {
+        padding: 120px 20px 60px 20px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .earnings-grid {
         grid-template-columns: 1fr;
         gap: 20px;
       }
+
+      .cta-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .cta-primary, .cta-secondary {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 60px 15px;
+      }
+
+      .section {
+        margin-bottom: 60px;
+      }
+
+      .feature-card {
+        padding: 30px 20px;
+      }
+
+      .earnings-section, .time-card {
+        padding: 40px 20px;
+      }
+    }
+
+    /* Scroll Effects */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Loading Animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="test-header">
-    <h1 class="test-title">🚀 تطوير واجهات المواقع الحديثة</h1>
-    <p class="test-subtitle">اختبار نجح! الموقع يعمل بشكل مثالي</p>
+  <!-- Floating Orbs -->
+  <div class="floating-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
   </div>
 
+  <!-- REVOLUTIONARY HEADER -->
+  <header class="header">
+    <!-- Particle System -->
+    <div class="particle-system">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+      <!-- Mobile Toggle -->
+      <div class="mobile-toggle" onclick="toggleMobileMenu()">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Main Navigation -->
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link">
+          <span class="nav-icon">🏠</span>
+          <span>الرئيسية</span>
+        </a>
+        <a href="skills.html" class="nav-link">
+          <span class="nav-icon">🎯</span>
+          <span>المهارات</span>
+        </a>
+        <a href="projects.html" class="nav-link">
+          <span class="nav-icon">💼</span>
+          <span>المشاريع</span>
+        </a>
+        <a href="#" class="nav-link" style="opacity: 0.6; cursor: not-allowed;" title="قريباً">
+          <span class="nav-icon">📚</span>
+          <span>المنهج</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Header Content -->
+    <div class="header-content">
+      <!-- Brand Badge -->
+      <div class="brand-badge">
+        <span class="brand-icon">🚀</span>
+        <span class="brand-text">Frontend Academy</span>
+      </div>
+
+      <!-- Hero Title -->
+      <h1 class="hero-title">كورس تعلم الفرونت إند الثوري</h1>
+      
+      <!-- Hero Subtitle -->
+      <p class="hero-subtitle">
+        ابدأ رحلتك في تصميم واجهات المواقع باحتراف مع أحدث التقنيات والذكاء الاصطناعي
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="cta-container">
+        <button class="cta-primary" onclick="scrollToSection('features')">
+          🎯 ابدأ الآن
+        </button>
+        <button class="cta-secondary" onclick="scrollToSection('earnings')">
+          💰 اكتشف الأرباح
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
   <div class="container">
-    
-    <!-- Success Status -->
-    <div class="status-card status-success">
-      <span class="status-icon">✅</span>
-      <h2 class="status-title">الموقع يعمل بنجاح!</h2>
-      <p class="status-text">
-        تهانينا! التصميم محمّل بشكل صحيح والموقع جاهز للاستخدام. 
-        يمكنك الآن إنشاء باقي الصفحات أو تعديل المحتوى حسب احتياجك.
-      </p>
-    </div>
 
-    <!-- Navigation Test -->
-    <div class="navigation-test">
-      
-      <div class="nav-card" onclick="alert('الصفحة الرئيسية جاهزة!')">
-        <span class="nav-icon">🏠</span>
-        <h3 class="nav-title">الصفحة الرئيسية</h3>
-        <p class="nav-desc">مقدمة عن تعلم الفرونت إند</p>
-      </div>
-
-      <div class="nav-card" onclick="alert('صفحة المهارات جاهزة!')">
-        <span class="nav-icon">🎯</span>
-        <h3 class="nav-title">المهارات المطلوبة</h3>
-        <p class="nav-desc">متطلبات التعلم والأدوات</p>
-      </div>
-
-      <div class="nav-card" onclick="alert('صفحة المنهج جاهزة!')">
-        <span class="nav-icon">📚</span>
-        <h3 class="nav-title">المنهج التعليمي</h3>
-        <p class="nav-desc">رحلة التعلم خطوة بخطوة</p>
-      </div>
-
-      <div class="nav-card" onclick="alert('صفحة المشاريع جاهزة!')">
-        <span class="nav-icon">💼</span>
-        <h3 class="nav-title">المشاريع العملية</h3>
-        <p class="nav-desc">تطبيق المهارات عملياً</p>
-      </div>
-
-    </div>
-
-    <!-- Instructions -->
-    <div class="status-card">
-      <span class="status-icon">💡</span>
-      <h2 class="status-title" style="color: #ffd700;">التعليمات:</h2>
-      <p class="status-text">
-        1. احفظ هذا الملف كـ index.html<br>
-        2. احفظ ملف header.html منفصل<br>
-        3. احفظ ملف footer.html منفصل<br>
-        4. تأكد إن كل الملفات في نفس المجلد<br>
-        5. افتح index.html في المتصفح
-      </p>
-    </div>
-
-  </div>
-
-  <!-- Footer -->
-  <div class="footer-test">
-    <p class="footer-text">© 2025 جميع الحقوق محفوظة - دورة خاصة لعائلة فيصل 💚</p>
-  </div>
-
-  <script>
-    // Test script
-    console.log('الموقع محمّل بنجاح! ✅');
-    
-    // Add some interactivity
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('جميع العناصر محملة بنجاح');
-      
-      // Add click effects
-      document.querySelectorAll('.nav-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
+    <!-- Why Learn Frontend Section -->
+    <section class="section scroll-reveal" id="features">
+      <h2 class="section-title">🌟 لماذا تتعلم الفرونت إند؟</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <h3 class="feature-title">تصميم مواقع جميلة</h3>
+          <p class="feature-text">
+            تصمم مواقع إلكترونية احترافية وجذابة بنفسك باستخدام أحدث التقنيات والأدوات العصرية
+          </p>
+        </div>
         
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
+        <div class="feature-card">
+          <span class="feature-icon">💰</span>
+          <h3 class="feature-title">دخل إضافي مضمون</h3>
+          <p class="feature-text">
+            تكسب دخلاً ممتازاً من مشاريع بسيطة ومتوسطة، مع إمكانية العمل الحر والمرونة الكاملة
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🤖</span>
+          <h3 class="feature-title">قوة الذكاء الاصطناعي</h3>
+          <p class="feature-text">
+            استفد من أدوات الذكاء الاصطناعي المتطورة لتسريع عملك وإنجاز المشاريع في وقت قياسي
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3 class="feature-title">سرعة في الإنجاز</h3>
+          <p class="feature-text">
+            مشاريعك جاهزة في ساعات وليس أيام! تقنيات حديثة تساعدك على التطوير السريع والفعال
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="section scroll-reveal">
+      <h2 class="section-title">👥 من يحتاج إلى الفرونت إند؟</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🛒</span>
+          <h3 class="feature-title">أصحاب المتاجر</h3>
+          <p class="feature-text">
+            أصحاب المتاجر الإلكترونية والتجارة الرقمية الذين يريدون حضوراً قوياً على الإنترنت
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">💼</span>
+          <h3 class="feature-title">مقدمو الخدمات</h3>
+          <p class="feature-text">
+            المهنيون والخبراء الذين يقدمون خدماتهم عبر الإنترنت ويحتاجون لواجهة احترافية
+          </p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🌟</span>
+          <h3 class="feature-title">الهوية الرقمية</h3>
+          <p class="feature-text">
+            كل من يريد موقعاً إلكترونياً يعبر عن عمله أو هويته الشخصية بطريقة مميزة وجذابة
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Earnings Section -->
+    <section class="section scroll-reveal earnings-section" id="earnings">
+      <h2 class="section-title" style="color: var(--neon-green);">💰 كم يمكن أن تكسب؟</h2>
+      <div class="earnings-grid">
+        <div class="earning-card">
+          <div class="earning-amount">300-800</div>
+          <div class="earning-label">ريال أسبوعياً</div>
+        </div>
+        
+        <div class="earning-card">
+          <div class="earning-amount">1200-3000</div>
+          <div class="earning-label">ريال شهرياً</div>
+        </div>
+        
+        <div class="earning-card">
+          <div class="earning-amount">5000+</div>
+          <div class="earning-label">مشاريع كبيرة</div>
+        </div>
+        
+        <div class="earning-card">
+          <div class="earning-amount">∞</div>
+          <div class="earning-label">إمكانيات لا محدودة</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Time Section -->
+    <section class="section scroll-reveal">
+      <div class="time-card">
+        <h2 class="section-title" style="color: var(--neon-pink); margin-bottom: 20px;">⏱️ مدة إنجاز المشروع</h2>
+        <p style="color: var(--text-dim); font-size: 20px; margin-bottom: 20px;">
+          يمكنك إنهاء مشروع بسيط خلال
+        </p>
+        <div class="time-highlight">2 إلى 3 ساعات فقط</div>
+        <p style="color: var(--text-dim); font-size: 18px; margin-top: 20px;">
+          باستخدام أدوات الذكاء الاصطناعي المتطورة وأحدث تقنيات التطوير السريع
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- REVOLUTIONARY FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3 class="footer-title">🚀 Frontend Academy</h3>
+      <p class="footer-text">
+        رحلتك نحو احتراف تطوير واجهات المواقع تبدأ من هنا
+      </p>
+      <div class="footer-signature">
+        صُمم خصيصاً لعائلتي 💚 بواسطة فيصل
+      </div>
+      
+      <!-- Social Links (Optional) -->
+      <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px;">
+        <div style="
+          width: 50px;
+          height: 50px;
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+        " 
+        onmouseover="this.style.borderColor='var(--neon-blue)'; this.style.boxShadow='var(--glow-soft) var(--neon-blue)'"
+        onmouseout="this.style.borderColor='var(--glass-border)'; this.style.boxShadow='none'">
+          <span style="font-size: 20px;">📧</span>
+        </div>
+        
+        <div style="
+          width: 50px;
+          height: 50px;
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+        " 
+        onmouseover="this.style.borderColor='var(--neon-green)'; this.style.boxShadow='var(--glow-soft) var(--neon-green)'"
+        onmouseout="this.style.borderColor='var(--glass-border)'; this.style.boxShadow='none'">
+          <span style="font-size: 20px;">💬</span>
+        </div>
+        
+        <div style="
+          width: 50px;
+          height: 50px;
+          background: var(--glass-bg);
+          border: 1px solid var(--glass-border);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+        " 
+        onmouseover="this.style.borderColor='var(--neon-purple)'; this.style.boxShadow='var(--glow-soft) var(--neon-purple)'"
+        onmouseout="this.style.borderColor='var(--glass-border)'; this.style.boxShadow='none'">
+          <span style="font-size: 20px;">🌐</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mainNav');
+      const toggle = document.querySelector('.mobile-toggle');
+      
+      nav.classList.toggle('show');
+      toggle.classList.toggle('active');
+      
+      // Add backdrop for mobile menu
+      if (nav.classList.contains('show')) {
+        const backdrop = document.createElement('div');
+        backdrop.id = 'nav-backdrop';
+        backdrop.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(5px);
+          z-index: 999;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        `;
+        document.body.appendChild(backdrop);
+        
+        setTimeout(() => backdrop.style.opacity = '1', 10);
+        
+        backdrop.addEventListener('click', toggleMobileMenu);
+      } else {
+        const backdrop = document.getElementById('nav-backdrop');
+        if (backdrop) {
+          backdrop.style.opacity = '0';
+          setTimeout(() => backdrop.remove(), 300);
+        }
+      }
+    }
+
+    // Smooth Scrolling
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+
+    // Scroll Reveal Animation
+    function setupScrollReveal() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Active Navigation Link
+    function setActiveNavLink() {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+          link.style.background = 'rgba(0, 242, 255, 0.2)';
+          link.style.borderColor = 'var(--neon-blue)';
+          link.style.color = 'var(--neon-blue)';
+          link.style.boxShadow = 'var(--glow-soft) var(--neon-blue)';
+        }
+      });
+    }
+
+    // Parallax Effect for Header
+    function setupParallax() {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.3;
+        
+        const particles = document.querySelectorAll('.particle');
+        particles.forEach((particle, index) => {
+          const speed = 0.2 + (index * 0.1);
+          particle.style.transform = `translateY(${rate * speed}px) rotate(${scrolled * 0.1}deg)`;
+        });
+
+        const orbs = document.querySelectorAll('.orb');
+        orbs.forEach((orb, index) => {
+          const speed = 0.1 + (index * 0.05);
+          orb.style.transform = `translateY(${rate * speed}px)`;
         });
       });
+    }
+
+    // Dynamic Particle Generation
+    function createDynamicParticles() {
+      const particleSystem = document.querySelector('.particle-system');
+      if (!particleSystem) return;
+      
+      const particleCount = window.innerWidth > 768 ? 6 : 3;
+      const colors = ['var(--neon-blue)', 'var(--neon-purple)', 'var(--neon-pink)', 'var(--neon-green)'];
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.className = 'particle';
+        particle.style.cssText = `
+          position: absolute;
+          width: ${Math.random() * 6 + 3}px;
+          height: ${Math.random() * 6 + 3}px;
+          background: ${randomColor};
+          border-radius: 50%;
+          top: ${Math.random() * 100}%;
+          left: ${Math.random() * 100}%;
+          animation: particle-float ${Math.random() * 8 + 6}s ease-in-out infinite;
+          animation-delay: ${Math.random() * 8}s;
+          box-shadow: var(--glow-soft) ${randomColor};
+          opacity: 0.8;
+        `;
+        
+        particleSystem.appendChild(particle);
+      }
+    }
+
+    // Enhanced Click Effects
+    function setupClickEffects() {
+      document.addEventListener('click', function(e) {
+        if (e.target.matches('.cta-primary, .cta-secondary, .nav-link, .feature-card')) {
+          createRippleEffect(e);
+        }
+      });
+    }
+
+    function createRippleEffect(e) {
+      const ripple = document.createElement('div');
+      const rect = e.target.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: radial-gradient(circle, rgba(0, 242, 255, 0.6), transparent);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: ripple-expand 0.6s ease-out;
+        z-index: 1000;
+      `;
+      
+      e.target.style.position = 'relative';
+      e.target.appendChild(ripple);
+      
+      setTimeout(() => ripple.remove(), 600);
+    }
+
+    // Initialize All Features
+    document.addEventListener('DOMContentLoaded', function() {
+      setupScrollReveal();
+      setActiveNavLink();
+      setupParallax();
+      createDynamicParticles();
+      setupClickEffects();
+      
+      console.log('🚀 Frontend Academy Loaded Successfully!');
+    });
+
+    // Close mobile menu on resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        const nav = document.getElementById('mainNav');
+        const backdrop = document.getElementById('nav-backdrop');
+        
+        nav.classList.remove('show');
+        if (backdrop) backdrop.remove();
+      }
+    });
+
+    // Add Ripple Animation CSS
+    const rippleStyle = document.createElement('style');
+    rippleStyle.textContent = `
+      @keyframes ripple-expand {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(rippleStyle);
+
+    // Performance optimization
+    let ticking = false;
+    function optimizedScrollHandler() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // Scroll-based animations here
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', optimizedScrollHandler);
+
+    // Preload images and fonts
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
+      console.log('✅ All resources loaded!');
     });
   </script>
 
