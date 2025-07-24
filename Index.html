@@ -2,40 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تطوير واجهات المواقع الحديثة - دورة شاملة</title>
+  <title>اختبار - تطوير واجهات المواقع</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="تعلم تطوير واجهات المواقع باستخدام أحدث التقنيات والأدوات العصرية">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   
   <style>
-    :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-      --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-      --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-      
-      --text-primary: #2c3e50;
-      --text-secondary: #7f8c8d;
-      --text-light: rgba(255, 255, 255, 0.9);
-      
-      --bg-primary: #ffffff;
-      --bg-glass: rgba(255, 255, 255, 0.1);
-      --bg-card: rgba(255, 255, 255, 0.95);
-      
-      --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
-      --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.15);
-      --shadow-heavy: 0 12px 48px rgba(0, 0, 0, 0.2);
-      
-      --border-radius: 20px;
-      --border-radius-lg: 30px;
-      
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -43,570 +16,232 @@
     }
 
     body {
-      font-family: 'Cairo', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      color: var(--text-primary);
-      line-height: 1.7;
-      font-weight: 400;
-      overflow-x: hidden;
-      position: relative;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      color: #ffffff;
+      line-height: 1.6;
+      min-height: 100vh;
     }
 
-    /* Animated Background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(67, 233, 123, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: -1;
-      animation: float 6s ease-in-out infinite;
+    .test-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(2deg); }
+    .test-title {
+      font-size: clamp(24px, 5vw, 48px);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .test-subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 300;
     }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 60px 20px;
     }
 
-    .main-content {
-      padding: 60px 0;
-    }
-
-    .section {
-      background: var(--bg-card);
+    .status-card {
+      background: rgba(255,255,255,0.1);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
       padding: 40px;
       margin: 40px 0;
-      box-shadow: var(--shadow-medium);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
+      text-align: center;
     }
 
-    .section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--primary-gradient);
-      border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    .status-success {
+      border-color: rgba(0,255,136,0.5);
+      background: rgba(0,255,136,0.1);
     }
 
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-heavy);
-    }
-
-    .section-title {
-      color: transparent;
-      background: var(--primary-gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-      font-size: clamp(24px, 4vw, 32px);
-      font-weight: 700;
-      margin-bottom: 30px;
-      position: relative;
-      display: inline-block;
-      letter-spacing: -0.5px;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-gradient);
-      border-radius: 2px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: var(--border-radius);
-      padding: 25px;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 2px;
-      background: var(--accent-gradient);
-      transition: var(--transition);
-    }
-
-    .feature-card:hover::before {
-      left: 0;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-light);
-      border-color: rgba(102, 126, 234, 0.3);
-    }
-
-    .feature-icon {
-      font-size: 28px;
-      margin-bottom: 15px;
+    .status-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
       display: block;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
 
-    .feature-text {
-      font-size: 16px;
-      color: var(--text-secondary);
-      font-weight: 400;
+    .status-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #00ff88;
+    }
+
+    .status-text {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
       line-height: 1.6;
     }
 
-    .earnings-section {
-      background: linear-gradient(135deg, rgba(67, 233, 123, 0.1) 0%, rgba(56, 249, 215, 0.1) 100%);
-      border: 2px solid rgba(67, 233, 123, 0.2);
-    }
-
-    .earnings-section::before {
-      background: var(--success-gradient);
-    }
-
-    .earnings-section .section-title {
-      background: var(--success-gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-
-    .earnings-grid {
+    .navigation-test {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
+      gap: 30px;
+      margin: 60px 0;
     }
 
-    .earning-card {
-      background: rgba(255, 255, 255, 0.9);
+    .nav-card {
+      background: rgba(255,255,255,0.08);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(67, 233, 123, 0.2);
-      border-radius: var(--border-radius);
-      padding: 30px 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 30px;
       text-align: center;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    .earning-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--success-gradient);
+    .nav-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(0,242,255,0.5);
+      box-shadow: 0 10px 30px rgba(0,242,255,0.2);
     }
 
-    .earning-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: var(--shadow-medium);
+    .nav-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
     }
 
-    .earning-amount {
-      font-size: 24px;
-      font-weight: 700;
-      color: transparent;
-      background: var(--success-gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
+    .nav-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #00f2ff;
       margin-bottom: 10px;
     }
 
-    .earning-description {
+    .nav-desc {
       font-size: 14px;
-      color: var(--text-secondary);
-      font-weight: 300;
+      color: rgba(255,255,255,0.7);
     }
 
-    .cta-section {
+    .footer-test {
+      background: rgba(255,255,255,0.05);
+      padding: 40px 20px;
       text-align: center;
-      padding: 60px 40px;
-      background: var(--primary-gradient);
-      color: var(--text-light);
-      border-radius: var(--border-radius-lg);
-      margin: 50px 0;
-      position: relative;
-      overflow: hidden;
+      margin-top: 80px;
     }
 
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.1) 0%, transparent 50%);
-      pointer-events: none;
+    .footer-text {
+      color: rgba(255,255,255,0.6);
+      font-size: 16px;
     }
 
-    .cta-title {
-      font-size: clamp(28px, 5vw, 36px);
-      font-weight: 700;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .cta-text {
-      font-size: 18px;
-      margin-bottom: 30px;
-      opacity: 0.9;
-      font-weight: 300;
-    }
-
-    .floating-elements {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .floating-element {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: rgba(102, 126, 234, 0.1);
-      border-radius: 50%;
-      animation: floatUp 8s infinite linear;
-    }
-
-    .floating-element:nth-child(2) {
-      left: 20%;
-      animation-delay: -2s;
-      background: rgba(118, 75, 162, 0.1);
-    }
-
-    .floating-element:nth-child(3) {
-      left: 40%;
-      animation-delay: -4s;
-      background: rgba(67, 233, 123, 0.1);
-    }
-
-    .floating-element:nth-child(4) {
-      left: 60%;
-      animation-delay: -6s;
-      background: rgba(79, 172, 254, 0.1);
-    }
-
-    .floating-element:nth-child(5) {
-      left: 80%;
-      animation-delay: -8s;
-      background: rgba(250, 112, 154, 0.1);
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Responsive Design */
     @media (max-width: 768px) {
       .container {
-        padding: 0 15px;
+        padding: 40px 15px;
       }
       
-      .section {
+      .status-card {
         padding: 30px 20px;
-        margin: 30px 0;
       }
       
-      .features-grid {
+      .navigation-test {
         grid-template-columns: 1fr;
         gap: 20px;
-      }
-      
-      .earnings-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-      
-      .cta-section {
-        padding: 40px 20px;
-        margin: 30px 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .section {
-        padding: 25px 15px;
-      }
-      
-      .feature-card {
-        padding: 20px;
-      }
-      
-      .earning-card {
-        padding: 25px 15px;
-      }
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Loading animation */
-    .section {
-      animation: fadeInUp 0.6s ease-out forwards;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .section:nth-child(1) { animation-delay: 0.1s; }
-    .section:nth-child(2) { animation-delay: 0.2s; }
-    .section:nth-child(3) { animation-delay: 0.3s; }
-    .section:nth-child(4) { animation-delay: 0.4s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Background Elements -->
-  <div class="floating-elements">
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
+  <!-- Header -->
+  <div class="test-header">
+    <h1 class="test-title">🚀 تطوير واجهات المواقع الحديثة</h1>
+    <p class="test-subtitle">اختبار نجح! الموقع يعمل بشكل مثالي</p>
   </div>
-
-  <!-- Header will be loaded here -->
-  <div id="header"></div>
 
   <div class="container">
-    <div class="main-content">
-      
-      <!-- Why Learn Frontend Section -->
-      <div class="section">
-        <h2 class="section-title">🎯 لماذا تتعلم تطوير الواجهات؟</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="feature-icon">🎨</span>
-            <div class="feature-text">تصميم تجارب رقمية مذهلة وتفاعلية تجذب المستخدمين</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">💼</span>
-            <div class="feature-text">فتح أبواب الفرص المهنية في مجال التكنولوجيا سريع النمو</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🚀</span>
-            <div class="feature-text">البدء السريع بدون خبرة برمجية مسبقة مع مسار تعلم واضح</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🤖</span>
-            <div class="feature-text">الاستفادة من قوة الذكاء الاصطناعي لتسريع عملية التطوير</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Target Audience Section -->
-      <div class="section">
-        <h2 class="section-title">👥 من يحتاج لتعلم هذا المجال؟</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="feature-icon">🌟</span>
-            <div class="feature-text">المبدعون الراغبون في تحويل أفكارهم إلى مواقع حقيقية</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🏢</span>
-            <div class="feature-text">رواد الأعمال الذين يريدون اختبار أفكارهم بسرعة وفعالية</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🎓</span>
-            <div class="feature-text">الطلاب الباحثون عن مهارات عملية ومصدر دخل إضافي</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">💡</span>
-            <div class="feature-text">المهتمون بالتكنولوجيا الذين يريدون دخول عالم البرمجة</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Target Market Section -->
-      <div class="section">
-        <h2 class="section-title">🎯 السوق المستهدف لخدماتك</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="feature-icon">🛒</span>
-            <div class="feature-text">أصحاب المتاجر الإلكترونية الناشئة والمتوسطة</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🏪</span>
-            <div class="feature-text">الشركات الصغيرة والمتوسطة التي تحتاج حضور رقمي قوي</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🎓</span>
-            <div class="feature-text">المؤسسات التعليمية والمراكز التدريبية</div>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">👨‍⚕️</span>
-            <div class="feature-text">المهنيون والأطباء والمحامون الذين يحتاجون مواقع شخصية</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Earnings Section -->
-      <div class="section earnings-section">
-        <h2 class="section-title">💰 إمكانيات الربح والعائد المادي</h2>
-        <div class="earnings-grid">
-          <div class="earning-card">
-            <div class="earning-amount">300 - 800 ريال</div>
-            <div class="earning-description">مشروع صفحة هبوط بسيطة</div>
-          </div>
-          <div class="earning-card">
-            <div class="earning-amount">1,000 - 2,500 ريال</div>
-            <div class="earning-description">موقع شركة متكامل</div>
-          </div>
-          <div class="earning-card">
-            <div class="earning-amount">800 - 1,500 ريال</div>
-            <div class="earning-description">عمل جزئي أسبوعي</div>
-          </div>
-          <div class="earning-card">
-            <div class="earning-amount">5,000+ ريال</div>
-            <div class="earning-description">عمل حر شهري متخصص</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Call to Action -->
-      <div class="cta-section">
-        <h2 class="cta-title">🚀 ابدأ رحلتك اليوم</h2>
-        <p class="cta-text">انضم إلى آلاف المطورين الذين غيروا مساراتهم المهنية</p>
-        <div style="margin-top: 30px; font-size: 48px; animation: float 2s ease-in-out infinite;">⭐</div>
-      </div>
-      
+    
+    <!-- Success Status -->
+    <div class="status-card status-success">
+      <span class="status-icon">✅</span>
+      <h2 class="status-title">الموقع يعمل بنجاح!</h2>
+      <p class="status-text">
+        تهانينا! التصميم محمّل بشكل صحيح والموقع جاهز للاستخدام. 
+        يمكنك الآن إنشاء باقي الصفحات أو تعديل المحتوى حسب احتياجك.
+      </p>
     </div>
+
+    <!-- Navigation Test -->
+    <div class="navigation-test">
+      
+      <div class="nav-card" onclick="alert('الصفحة الرئيسية جاهزة!')">
+        <span class="nav-icon">🏠</span>
+        <h3 class="nav-title">الصفحة الرئيسية</h3>
+        <p class="nav-desc">مقدمة عن تعلم الفرونت إند</p>
+      </div>
+
+      <div class="nav-card" onclick="alert('صفحة المهارات جاهزة!')">
+        <span class="nav-icon">🎯</span>
+        <h3 class="nav-title">المهارات المطلوبة</h3>
+        <p class="nav-desc">متطلبات التعلم والأدوات</p>
+      </div>
+
+      <div class="nav-card" onclick="alert('صفحة المنهج جاهزة!')">
+        <span class="nav-icon">📚</span>
+        <h3 class="nav-title">المنهج التعليمي</h3>
+        <p class="nav-desc">رحلة التعلم خطوة بخطوة</p>
+      </div>
+
+      <div class="nav-card" onclick="alert('صفحة المشاريع جاهزة!')">
+        <span class="nav-icon">💼</span>
+        <h3 class="nav-title">المشاريع العملية</h3>
+        <p class="nav-desc">تطبيق المهارات عملياً</p>
+      </div>
+
+    </div>
+
+    <!-- Instructions -->
+    <div class="status-card">
+      <span class="status-icon">💡</span>
+      <h2 class="status-title" style="color: #ffd700;">التعليمات:</h2>
+      <p class="status-text">
+        1. احفظ هذا الملف كـ index.html<br>
+        2. احفظ ملف header.html منفصل<br>
+        3. احفظ ملف footer.html منفصل<br>
+        4. تأكد إن كل الملفات في نفس المجلد<br>
+        5. افتح index.html في المتصفح
+      </p>
+    </div>
+
   </div>
 
-  <!-- Footer will be loaded here -->
-  <div id="footer"></div>
+  <!-- Footer -->
+  <div class="footer-test">
+    <p class="footer-text">© 2025 جميع الحقوق محفوظة - دورة خاصة لعائلة فيصل 💚</p>
+  </div>
 
-  <!-- JavaScript for dynamic content loading -->
   <script>
-    // Performance optimized loading with error handling
-    async function loadContent() {
-      try {
-        // Load header
-        const headerResponse = await fetch('header.html');
-        if (headerResponse.ok) {
-          const headerData = await headerResponse.text();
-          document.getElementById('header').innerHTML = headerData;
-        } else {
-          console.warn('Failed to load header.html');
-        }
-
-        // Load footer
-        const footerResponse = await fetch('footer.html');
-        if (footerResponse.ok) {
-          const footerData = await footerResponse.text();
-          document.getElementById('footer').innerHTML = footerData;
-        } else {
-          console.warn('Failed to load footer.html');
-        }
-      } catch (error) {
-        console.error('Error loading content:', error);
-      }
-    }
-
-    // Load content when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadContent);
-    } else {
-      loadContent();
-    }
-
-    // Smooth scrolling for internal links
-    document.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(e.target.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }
-    });
-
-    // Add intersection observer for animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-        }
+    // Test script
+    console.log('الموقع محمّل بنجاح! ✅');
+    
+    // Add some interactivity
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('جميع العناصر محملة بنجاح');
+      
+      // Add click effects
+      document.querySelectorAll('.nav-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
       });
-    }, observerOptions);
-
-    // Observe all sections
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
     });
   </script>
 
