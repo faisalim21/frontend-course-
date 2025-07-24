@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>المشاريع العملية - معرض إبداعات تطوير الواجهات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="مجموعة مشاريع عملية مبتكرة ومتطورة لتعلم تطوير الواجهات بأسلوب تفاعلي ومثير">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --cyber-blue: #00d4ff;
+      --cyber-purple: #b829ff;
+      --cyber-pink: #ff2eb5;
+      --cyber-green: #39ff14;
+      --cyber-orange: #ff6b00;
+      --cyber-yellow: #ffff00;
+      --dark-void: #000000;
+      --dark-space: #0a0a0f;
+      --dark-matter: #1a1a2e;
+      --glass-shine: rgba(255, 255, 255, 0.1);
+      --glass-glow: rgba(255, 255, 255, 0.05);
+      --text-bright: #ffffff;
+      --text-dim: #b0b0b0;
+      --text-shadow: #666666;
+      
+      --glow-intense: 0 0 30px;
+      --glow-soft: 0 0 15px;
+      --glow-mega: 0 0 60px;
+      --border-cyber: 2px;
+      --border-radius-cyber: 15px;
+      --border-radius-mega: 25px;
+      --transition-cyber: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', 'Orbitron', monospace;
+      background: var(--dark-void);
+      color: var(--text-bright);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Cyberpunk Grid Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: -2;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Holographic Orbs */
+    .holographic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .holo-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, 
+        rgba(0, 212, 255, 0.3), 
+        rgba(184, 41, 255, 0.2), 
+        transparent);
+      animation: holoFloat 8s ease-in-out infinite;
+      filter: blur(2px);
+    }
+
+    .holo-orb:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 80%;
+      animation-delay: 0s;
+    }
+
+    .holo-orb:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 10%;
+      animation-delay: -3s;
+      background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 46, 181, 0.3), 
+        rgba(57, 255, 20, 0.2), 
+        transparent);
+    }
+
+    .holo-orb:nth-child(3) {
+      width: 300px;
+      height: 300px;
+      top: 30%;
+      left: 50%;
+      animation-delay: -6s;
+      background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 107, 0, 0.2), 
+        rgba(255, 255, 0, 0.1), 
+        transparent);
+    }
+
+    @keyframes holoFloat {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+        opacity: 0.3; 
+      }
+      50% { 
+        transform: translateY(-50px) rotate(180deg) scale(1.1); 
+        opacity: 0.6; 
+      }
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .main-content {
+      padding: 80px 0;
+    }
+
+    /* Cyberpunk Hero */
+    .cyber-hero {
+      text-align: center;
+      padding: 100px 40px;
+      background: linear-gradient(135deg, 
+        rgba(0, 212, 255, 0.1) 0%, 
+        rgba(184, 41, 255, 0.1) 50%, 
+        rgba(255, 46, 181, 0.1) 100%);
+      border: var(--border-cyber) solid var(--cyber-blue);
+      border-radius: var(--border-radius-mega);
+      margin-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--glow-intense) var(--cyber-blue);
+    }
+
+    .cyber-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+      animation: scanLine 3s ease-in-out infinite;
+    }
+
+    @keyframes scanLine {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    .cyber-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(28px, 8vw, 72px);
+      font-weight: 900;
+      background: linear-gradient(45deg, 
+        var(--cyber-blue), 
+        var(--cyber-purple), 
+        var(--cyber-pink), 
+        var(--cyber-green));
+      background-size: 400% 400%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: gradientShift 3s ease-in-out infinite;
+      text-shadow: var(--glow-soft) var(--cyber-blue);
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .cyber-subtitle {
+      font-size: 24px;
+      color: var(--text-dim);
+      margin-bottom: 50px;
+      font-weight: 300;
+      position: relative;
+    }
+
+    /* Project Gallery */
+    .projects-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+      margin: 80px 0;
+    }
+
+    .project-card {
+      background: var(--glass-glow);
+      backdrop-filter: blur(25px);
+      border: var(--border-cyber) solid transparent;
+      border-radius: var(--border-radius-cyber);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-cyber);
+      cursor: pointer;
+      height: 500px;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        var(--cyber-blue), 
+        var(--cyber-purple), 
+        var(--cyber-pink), 
+        var(--cyber-green), 
+        var(--cyber-orange));
+      background-size: 400% 400%;
+      opacity: 0;
+      transition: var(--transition-cyber);
+      animation: gradientShift 5s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .project-card:hover::before {
+      opacity: 0.1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px) rotateX(5deg);
+      box-shadow: var(--glow-mega) var(--cyber-blue);
+      border-color: var(--cyber-blue);
+    }
+
+    .project-card:nth-child(2n):hover {
+      box-shadow: var(--glow-mega) var(--cyber-purple);
+      border-color: var(--cyber-purple);
+    }
+
+    .project-card:nth-child(3n):hover {
+      box-shadow: var(--glow-mega) var(--cyber-pink);
+      border-color: var(--cyber-pink);
+    }
+
+    .project-header {
+      padding: 30px;
+      border-bottom: 1px solid var(--glass-shine);
+      position: relative;
+    }
+
+    .project-number {
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-purple));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: var(--glow-soft) var(--cyber-blue);
+    }
+
+    .project-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--cyber-blue);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .project-category {
+      color: var(--cyber-green);
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .project-body {
+      padding: 30px;
+      height: calc(100% - 120px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-description {
+      color: var(--text-dim);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .tech-chip {
+      background: linear-gradient(45deg, var(--cyber-purple), var(--cyber-pink));
+      color: var(--text-bright);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: var(--glow-soft) var(--cyber-purple);
+      transition: var(--transition-cyber);
+    }
+
+    .tech-chip:hover {
+      transform: scale(1.1);
+      box-shadow: var(--glow-intense) var(--cyber-purple);
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-difficulty {
+      display: flex;
+      gap: 4px;
+    }
+
+    .difficulty-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--glass-shine);
+    }
+
+    .difficulty-dot.active {
+      background: var(--cyber-yellow);
+      box-shadow: var(--glow-soft) var(--cyber-yellow);
+    }
+
+    .project-action {
+      background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-green));
+      border: none;
+      color: var(--text-bright);
+      padding: 10px 20px;
+      border-radius: var(--border-radius-cyber);
+      font-family: 'Orbitron', monospace;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition-cyber);
+      box-shadow: var(--glow-soft) var(--cyber-blue);
+    }
+
+    .project-action:hover {
+      transform: scale(1.05);
+      box-shadow: var(--glow-intense) var(--cyber-green);
+    }
+
+    /* Interactive Features Section */
+    .features-matrix {
+      margin: 120px 0;
+      text-align: center;
+    }
+
+    .matrix-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 48px;
+      font-weight: 900;
+      background: linear-gradient(45deg, var(--cyber-green), var(--cyber-yellow));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 60px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .matrix-item {
+      background: var(--glass-glow);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-shine);
+      border-radius: var(--border-radius-cyber);
+      padding: 40px 20px;
+      text-align: center;
+      transition: var(--transition-cyber);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .matrix-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+      transition: var(--transition-cyber);
+    }
+
+    .matrix-item:hover::before {
+      left: 100%;
+    }
+
+    .matrix-item:hover {
+      transform: translateY(-10px);
+      border-color: var(--cyber-blue);
+      box-shadow: var(--glow-intense) var(--cyber-blue);
+    }
+
+    .matrix-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+      filter: drop-shadow(var(--glow-soft) var(--cyber-blue));
+    }
+
+    .matrix-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cyber-blue);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .matrix-desc {
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Floating Navigation */
+    .floating-nav {
+      position: fixed;
+      top: 50%;
+      right: 30px;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--glass-shine);
+      border: 2px solid var(--cyber-blue);
+      cursor: pointer;
+      transition: var(--transition-cyber);
+      box-shadow: var(--glow-soft) var(--cyber-blue);
+    }
+
+    .nav-dot:hover, .nav-dot.active {
+      background: var(--cyber-blue);
+      transform: scale(1.3);
+      box-shadow: var(--glow-intense) var(--cyber-blue);
+    }
+
+    /* Holographic Display */
+    .holo-display {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 120px;
+      height: 80px;
+      background: var(--glass-glow);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--cyber-green);
+      border-radius: var(--border-radius-cyber);
+      padding: 15px;
+      font-family: 'Orbitron', monospace;
+      font-size: 10px;
+      color: var(--cyber-green);
+      box-shadow: var(--glow-soft) var(--cyber-green);
+      z-index: 1000;
+    }
+
+    .holo-text {
+      animation: typewriter 3s steps(20) infinite;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    @keyframes typewriter {
+      0%, 50% { width: 0; }
+      100% { width: 100%; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .projects-gallery {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .project-card {
+        height: 450px;
+      }
+
+      .cyber-hero {
+        padding: 60px 20px;
+      }
+
+      .matrix-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .floating-nav {
+        right: 15px;
+      }
+
+      .holo-display {
+        bottom: 15px;
+        left: 15px;
+        width: 100px;
+        height: 60px;
+        padding: 10px;
+        font-size: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .project-header {
+        padding: 20px;
+      }
+
+      .project-body {
+        padding: 20px;
+      }
+
+      .cyber-title {
+        font-size: 32px;
+      }
+
+      .matrix-title {
+        font-size: 32px;
+      }
+    }
+
+    /* Scroll animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glitch effect */
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    .glitch::before {
+      animation: glitch1 2s infinite;
+      color: var(--cyber-pink);
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitch2 2s infinite;
+      color: var(--cyber-blue);
+      z-index: -2;
+    }
+
+    @keyframes glitch1 {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-2px); }
+      40% { transform: translateX(-4px); }
+      60% { transform: translateX(2px); }
+      80% { transform: translateX(4px); }
+    }
+
+    @keyframes glitch2 {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(2px); }
+      45% { transform: translateX(-2px); }
+      65% { transform: translateX(-4px); }
+      85% { transform: translateX(4px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Holographic Background -->
+  <div class="holographic-bg">
+    <div class="holo-orb"></div>
+    <div class="holo-orb"></div>
+    <div class="holo-orb"></div>
+  </div>
+
+  <!-- Header will be loaded here -->
+  <div id="header"></div>
+
+  <div class="container">
+    <div class="main-content">
+      
+      <!-- Cyberpunk Hero Section -->
+      <div class="cyber-hero fade-in-up">
+        <h1 class="cyber-title glitch" data-text="PROJECTS MATRIX">🔮 مصفوفة المشاريع</h1>
+        <p class="cyber-subtitle">اكتشف عالم اللامحدود من الإبداع الرقمي</p>
+        <div style="margin-top: 40px;">
+          <span style="font-size: 64px; animation: holoFloat 3s ease-in-out infinite;">⚡</span>
+        </div>
+      </div>
+
+      <!-- Projects Gallery -->
+      <div class="projects-gallery">
+        
+        <!-- Project 1 -->
+        <div class="project-card fade-in-up">
+          <div class="project-header">
+            <div class="project-number">01</div>
+            <h3 class="project-title">متجر إلكتروني متقدم</h3>
+            <div class="project-category">E-Commerce</div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              تطوير متجر إلكتروني متكامل بتقنيات حديثة، يشمل نظام دفع آمن، إدارة المنتجات، وتجربة مستخدم استثنائية مع تصميم متجاوب.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">React.js</span>
+              <span class="tech-chip">Node.js</span>
+              <span class="tech-chip">MongoDB</span>
+              <span class="tech-chip">Stripe API</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-difficulty">
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot"></div>
+              </div>
+              <button class="project-action">استكشف</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card fade-in-up">
+          <div class="project-header">
+            <div class="project-number">02</div>
+            <h3 class="project-title">لوحة تحكم ذكية</h3>
+            <div class="project-category">Dashboard</div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              بناء لوحة تحكم تفاعلية مع رسوم بيانية متحركة، إحصائيات مباشرة، وواجهة إدارة شاملة باستخدام أحدث تقنيات تصور البيانات.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">Vue.js</span>
+              <span class="tech-chip">Chart.js</span>
+              <span class="tech-chip">Firebase</span>
+              <span class="tech-chip">Websockets</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-difficulty">
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot"></div>
+                <div class="difficulty-dot"></div>
+              </div>
+              <button class="project-action">تجربة</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card fade-in-up">
+          <div class="project-header">
+            <div class="project-number">03</div>
+            <h3 class="project-title">تطبيق مواعيد طبية</h3>
+            <div class="project-category">Healthcare</div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              منصة حجز المواعيد الطبية مع نظام إشعارات ذكي، تقويم تفاعلي، وإدارة ملفات المرضى بأمان عالي وتشفير متقدم.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">Angular</span>
+              <span class="tech-chip">TypeScript</span>
+              <span class="tech-chip">PostgreSQL</span>
+              <span class="tech-chip">JWT Auth</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-difficulty">
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+              </div>
+              <button class="project-action">ابدأ</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card fade-in-up">
+          <div class="project-header">
+            <div class="project-number">04</div>
+            <h3 class="project-title">منصة تعليمية تفاعلية</h3>
+            <div class="project-category">Education</div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              تطوير منصة تعليمية شاملة مع فيديوهات تفاعلية، اختبارات ذكية، ونظام تقييم متطور مع تقارير تقدم مفصلة للطلاب.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">React Native</span>
+              <span class="tech-chip">GraphQL</span>
+              <span class="tech-chip">AWS</span>
+              <span class="tech-chip">Redis</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-difficulty">
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot"></div>
+                <div class="difficulty-dot"></div>
+              </div>
+              <button class="project-action">انطلق</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card fade-in-up">
+          <div class="project-header">
+            <div class="project-number">05</div>
+            <h3 class="project-title">محفظة عملات رقمية</h3>
+            <div class="project-category">Fintech</div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              بناء محفظة عملات رقمية آمنة مع تتبع الأسعار المباشر، محفوظات المعاملات، وتحليلات استثمارية ذكية مع رسوم بيانية متقدمة.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">Svelte</span>
+              <span class="tech-chip">Web3.js</span>
+              <span class="tech-chip">Blockchain</span>
+              <span class="tech-chip">TradingView</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-difficulty">
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+              </div>
+              <button class="project-action">احترف</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card fade-in-up">
+          <div class="project-header">
+            <div class="project-number">06</div>
+            <h3 class="project-title">لعبة ذكاء تفاعلية</h3>
+            <div class="project-category">Gaming</div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              تطوير لعبة ذكاء ثلاثية الأبعاد مع فيزياء متقدمة، ذكاء اصطناعي للخصوم، ونظام نقاط وترتيب عالمي للاعبين.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">Three.js</span>
+              <span class="tech-chip">WebGL</span>
+              <span class="tech-chip">Socket.io</span>
+              <span class="tech-chip">AI Engine</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-difficulty">
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot active"></div>
+                <div class="difficulty-dot"></div>
+              </div>
+              <button class="project-action">العب</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Features Matrix -->
+      <div class="features-matrix">
+        <h2 class="matrix-title">مصفوفة المميزات</h2>
+        <div class="matrix-grid">
+          
+          <div class="matrix-item fade-in-up">
+            <span class="matrix-icon">🚀</span>
+            <h3 class="matrix-label">تقنيات متطورة</h3>
+            <p class="matrix-desc">استخدام أحدث التقنيات والأدوات في كل مشروع</p>
+          </div>
+
+          <div class="matrix-item fade-in-up">
+            <span class="matrix-icon">🎨</span>
+            <h3 class="matrix-label">تصميم إبداعي</h3>
+            <p class="matrix-desc">واجهات مذهلة تجمع بين الجمال والوظائف</p>
+          </div>
+
+          <div class="matrix-item fade-in-up">
+            <span class="matrix-icon">⚡</span>
+            <h3 class="matrix-label">أداء عالي</h3>
+            <p class="matrix-desc">تحسين السرعة والاستجابة في جميع المشاريع</p>
+          </div>
+
+          <div class="matrix-item fade-in-up">
+            <span class="matrix-icon">🔒</span>
+            <h3 class="matrix-label">أمان متقدم</h3>
+            <p class="matrix-desc">تطبيق أعلى معايير الأمان والحماية</p>
+          </div>
+
+          <div class="matrix-item fade-in-up">
+            <span class="matrix-icon">📱</span>
+            <h3 class="matrix-label">تجاوب كامل</h3>
+            <p class="matrix-desc">تصميمات تعمل بمثالية على جميع الأجهزة</p>
+          </div>
+
+          <div class="matrix-item fade-in-up">
+            <span class="matrix-icon">🌐</span>
+            <h3 class="matrix-label">تقنيات المستقبل</h3>
+            <p class="matrix-desc">استكشاف تقنيات الجيل القادم من الويب</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating Navigation -->
+  <div class="floating-nav">
+    <div class="nav-dot active" data-section="hero"></div>
+    <div class="nav-dot" data-section="projects"></div>
+    <div class="nav-dot" data-section="features"></div>
+  </div>
+
+  <!-- Holographic Display -->
+  <div class="holo-display">
+    <div style="color: var(--cyber-green); font-weight: 700; margin-bottom: 5px;">STATUS:</div>
+    <div class="holo-text">SYSTEM ONLINE</div>
+    <div style="font-size: 8px; margin-top: 8px; opacity: 0.7;">06 PROJECTS LOADED</div>
+  </div>
+
+  <!-- Footer will be loaded here -->
+  <div id="footer"></div>
+
+  <!-- JavaScript -->
+  <script>
+    // Particle system enhanced
+    function createAdvancedParticles() {
+      const particleCount = 30;
+      const container = document.body;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.width = Math.random() * 4 + 2 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.background = `var(--cyber-${['blue', 'purple', 'pink', 'green'][Math.floor(Math.random() * 4)]})`;
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '-1';
+        particle.style.opacity = '0.6';
+        particle.style.boxShadow = `0 0 10px currentColor`;
+        
+        // Random position
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // Random animation
+        const animationDuration = Math.random() * 10 + 5;
+        particle.style.animation = `holoFloat ${animationDuration}s ease-in-out infinite`;
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        
+        container.appendChild(particle);
+      }
+    }
+
+    // Advanced scroll animations
+    function setupScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            
+            // Special effects for project cards
+            if (entry.target.classList.contains('project-card')) {
+              setTimeout(() => {
+                entry.target.style.transform = 'translateY(0) rotateX(0)';
+                entry.target.style.opacity = '1';
+              }, Math.random() * 200);
+            }
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Floating navigation
+    function setupFloatingNav() {
+      const navDots = document.querySelectorAll('.nav-dot');
+      const sections = {
+        'hero': document.querySelector('.cyber-hero'),
+        'projects': document.querySelector('.projects-gallery'),
+        'features': document.querySelector('.features-matrix')
+      };
+
+      navDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const section = dot.getAttribute('data-section');
+          if (sections[section]) {
+            sections[section].scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }
+        });
+      });
+
+      // Update active dot on scroll
+      const updateActiveDot = () => {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        let activeSection = 'hero';
+        
+        Object.entries(sections).forEach(([key, section]) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 2) {
+            activeSection = key;
+          }
+        });
+
+        navDots.forEach(dot => {
+          dot.classList.toggle('active', dot.getAttribute('data-section') === activeSection);
+        });
+      };
+
+      window.addEventListener('scroll', updateActiveDot);
+    }
+
+    // Interactive project cards
+    function setupProjectInteractions() {
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      projectCards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+          // Create ripple effect
+          const ripple = document.createElement('div');
+          ripple.style.position = 'absolute';
+          ripple.style.top = '0';
+          ripple.style.left = '0';
+          ripple.style.width = '100%';
+          ripple.style.height = '100%';
+          ripple.style.background = 'radial-gradient(circle at center, rgba(0,212,255,0.1), transparent)';
+          ripple.style.borderRadius = 'inherit';
+          ripple.style.animation = 'rippleEffect 0.6s ease-out';
+          ripple.style.pointerEvents = 'none';
+          
+          card.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+
+        // Parallax effect
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+          
+          card.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+        });
+      });
+    }
+
+    // Matrix rain effect
+    function createMatrixRain() {
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = '-3';
+      canvas.style.opacity = '0.1';
+      
+      document.body.appendChild(canvas);
+      
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+      const matrixArray = matrix.split("");
+      
+      const fontSize = 10;
+      const columns = canvas.width / fontSize;
+      const drops = [];
+      
+      for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+      }
+      
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00d4ff';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+      
+      setInterval(drawMatrix, 50);
+    }
+
+    // Dynamic loading
+    async function loadContent() {
+      try {
+        const headerResponse = await fetch('header.html');
+        if (headerResponse.ok) {
+          const headerData = await headerResponse.text();
+          document.getElementById('header').innerHTML = headerData;
+        }
+
+        const footerResponse = await fetch('footer.html');
+        if (footerResponse.ok) {
+          const footerData = await footerResponse.text();
+          document.getElementById('footer').innerHTML = footerData;
+        }
+      } catch (error) {
+        console.error('Error loading content:', error);
+      }
+    }
+
+    // Audio effects (optional)
+    function setupAudioEffects() {
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          // Create subtle audio context for hover (if supported)
+          if (window.AudioContext || window.webkitAudioContext) {
+            try {
+              const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+              const oscillator = audioCtx.createOscillator();
+              const gainNode = audioCtx.createGain();
+              
+              oscillator.connect(gainNode);
+              gainNode.connect(audioCtx.destination);
+              
+              oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+              gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+              gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+              
+              oscillator.start(audioCtx.currentTime);
+              oscillator.stop(audioCtx.currentTime + 0.1);
+            } catch (e) {
+              // Audio not supported or blocked
+            }
+          }
+        });
+      });
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+      loadContent();
+      createAdvancedParticles();
+      setupScrollAnimations();
+      setupFloatingNav();
+      setupProjectInteractions();
+      createMatrixRain();
+      setupAudioEffects();
+    });
+
+    // Add CSS for ripple effect
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes rippleEffect {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Performance optimization
+    let ticking = false;
+    function updateAnimations() {
+      // Update any continuous animations here
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', updateAnimations);
+    window.addEventListener('resize', () => {
+      // Handle resize
+      const canvas = document.querySelector('canvas');
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    });
+  </script>
+
+</body>
+</html>

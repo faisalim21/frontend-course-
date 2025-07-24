@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>المنهج التعليمي - رحلة تطوير الواجهات الحديثة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="منهج تعليمي شامل ومبتكر لتعلم تطوير واجهات المواقع بطريقة تفاعلية ومثيرة">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --neon-blue: #00f2ff;
+      --neon-purple: #bf00ff;
+      --neon-pink: #ff006e;
+      --neon-green: #00ff88;
+      --neon-yellow: #ffea00;
+      --dark-bg: #0a0a0a;
+      --dark-card: #1a1a1a;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --text-muted: #888888;
+      
+      --shadow-neon: 0 0 20px;
+      --shadow-glow: 0 0 40px;
+      --border-radius: 25px;
+      --border-radius-lg: 35px;
+      --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(191, 0, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 0, 110, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 60% 40%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -2;
+      animation: backgroundPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes backgroundPulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+
+    /* Particle System */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--neon-blue);
+      border-radius: 50%;
+      animation: float 6s infinite linear;
+      opacity: 0.7;
+    }
+
+    .particle:nth-child(2n) { background: var(--neon-purple); animation-delay: -2s; }
+    .particle:nth-child(3n) { background: var(--neon-pink); animation-delay: -4s; }
+    .particle:nth-child(4n) { background: var(--neon-green); animation-delay: -6s; }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10%, 90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .main-content {
+      padding: 60px 0;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(135deg, 
+        rgba(0, 242, 255, 0.1) 0%, 
+        rgba(191, 0, 255, 0.1) 50%, 
+        rgba(255, 0, 110, 0.1) 100%);
+      border-radius: var(--border-radius-lg);
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        transparent,
+        var(--neon-blue),
+        transparent,
+        var(--neon-purple),
+        transparent,
+        var(--neon-pink),
+        transparent
+      );
+      animation: rotate 20s linear infinite;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      text-shadow: var(--shadow-neon) var(--neon-blue);
+    }
+
+    .hero-subtitle {
+      font-size: 24px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+    }
+
+    /* Timeline Section */
+    .timeline-container {
+      position: relative;
+      margin: 80px 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-green));
+      border-radius: 2px;
+      box-shadow: var(--shadow-glow) var(--neon-blue);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin: 80px 0;
+      width: 48%;
+      animation: slideInFromSide 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .timeline-item:nth-child(odd) {
+      right: 52%;
+      text-align: left;
+      animation-name: slideInFromLeft;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 52%;
+      text-align: right;
+      animation-name: slideInFromRight;
+    }
+
+    @keyframes slideInFromLeft {
+      0% { opacity: 0; transform: translateX(-100px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInFromRight {
+      0% { opacity: 0; transform: translateX(100px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .timeline-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      position: relative;
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-glow) rgba(0, 242, 255, 0.3);
+      border-color: var(--neon-blue);
+    }
+
+    .timeline-card:nth-child(2n) .timeline-card::before {
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+    }
+
+    .timeline-card:nth-child(3n) .timeline-card::before {
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-green));
+    }
+
+    .timeline-icon {
+      position: absolute;
+      top: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: var(--shadow-neon) var(--neon-blue);
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-icon {
+      right: -30px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-icon {
+      left: -30px;
+    }
+
+    .timeline-number {
+      position: absolute;
+      top: -15px;
+      width: 40px;
+      height: 40px;
+      background: var(--neon-yellow);
+      color: var(--dark-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: var(--shadow-neon) var(--neon-yellow);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-number {
+      right: -20px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-number {
+      left: -20px;
+    }
+
+    .timeline-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .timeline-duration {
+      color: var(--neon-yellow);
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .timeline-description {
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .timeline-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .skill-tag {
+      background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-neon) rgba(191, 0, 255, 0.5);
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-glow) rgba(191, 0, 255, 0.7);
+    }
+
+    /* Interactive Elements */
+    .progress-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-lg);
+      padding: 60px 40px;
+      margin: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      background: linear-gradient(45deg, var(--neon-green), var(--neon-yellow));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .progress-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover::before {
+      left: 100%;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow) rgba(0, 242, 255, 0.3);
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    /* Floating Action Button */
+    .fab {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-glow) var(--neon-pink);
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    .fab:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-glow) var(--neon-purple);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .timeline::before {
+        right: 20px;
+        transform: none;
+      }
+
+      .timeline-item {
+        width: 100%;
+        right: 0 !important;
+        left: 0 !important;
+        text-align: right;
+        padding-right: 60px;
+      }
+
+      .timeline-icon {
+        right: -30px !important;
+        left: auto !important;
+      }
+
+      .timeline-number {
+        right: -20px !important;
+        left: auto !important;
+      }
+
+      .hero-section {
+        padding: 60px 20px;
+      }
+
+      .progress-stats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .timeline-card {
+        padding: 25px;
+      }
+
+      .fab {
+        bottom: 20px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+    }
+
+    /* Scroll animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle System -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Header will be loaded here -->
+  <div id="header"></div>
+
+  <div class="container">
+    <div class="main-content">
+      
+      <!-- Hero Section -->
+      <div class="hero-section animate-on-scroll">
+        <h1 class="hero-title">🚀 المنهج التعليمي الثوري</h1>
+        <p class="hero-subtitle">رحلة تفاعلية نحو احتراف تطوير الواجهات الحديثة</p>
+        <div style="margin-top: 40px;">
+          <span style="font-size: 64px; animation: float 3s ease-in-out infinite;">⭐</span>
+        </div>
+      </div>
+
+      <!-- Progress Stats -->
+      <div class="progress-section animate-on-scroll">
+        <h2 class="progress-title">📊 إحصائيات المنهج</h2>
+        <div class="progress-stats">
+          <div class="stat-card">
+            <div class="stat-number">12</div>
+            <div class="stat-label">أسبوع تدريبي</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">48</div>
+            <div class="stat-label">درس تفاعلي</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">15</div>
+            <div class="stat-label">مشروع عملي</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">دعم مستمر</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-container">
+        <div class="timeline">
+          
+          <!-- Phase 1 -->
+          <div class="timeline-item animate-on-scroll">
+            <div class="timeline-card">
+              <div class="timeline-icon">🌟</div>
+              <div class="timeline-number">1</div>
+              <h3 class="timeline-title">مرحلة التأسيس والإعداد</h3>
+              <div class="timeline-duration">⏱️ الأسابيع 1-2</div>
+              <p class="timeline-description">
+                نبدأ رحلتنا بوضع الأسس القوية لفهم عالم تطوير الواجهات. ستتعلم المفاهيم الأساسية وتجهز بيئة العمل المثالية لتصبح مطور واجهات محترف.
+              </p>
+              <div class="timeline-skills">
+                <span class="skill-tag">HTML الأساسي</span>
+                <span class="skill-tag">CSS المتقدم</span>
+                <span class="skill-tag">أدوات التطوير</span>
+                <span class="skill-tag">Git & GitHub</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="timeline-item animate-on-scroll">
+            <div class="timeline-card">
+              <div class="timeline-icon">🎨</div>
+              <div class="timeline-number">2</div>
+              <h3 class="timeline-title">فن التصميم والتخطيط</h3>
+              <div class="timeline-duration">⏱️ الأسابيع 3-4</div>
+              <p class="timeline-description">
+                اكتشف أسرار التصميم الجميل والوظيفي. ستتعلم كيفية تحويل الأفكار إلى تصاميم مذهلة تجذب المستخدمين وتوفر تجربة استثنائية.
+              </p>
+              <div class="timeline-skills">
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">Flexbox</span>
+                <span class="skill-tag">CSS Grid</span>
+                <span class="skill-tag">Responsive Design</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="timeline-item animate-on-scroll">
+            <div class="timeline-card">
+              <div class="timeline-icon">⚡</div>
+              <div class="timeline-number">3</div>
+              <h3 class="timeline-title">التفاعل والحيوية</h3>
+              <div class="timeline-duration">⏱️ الأسابيع 5-7</div>
+              <p class="timeline-description">
+                أضف الحياة والتفاعل لمواقعك! تعلم JavaScript من الصفر وكيفية جعل مواقعك تتفاعل مع المستخدمين بطرق مبتكرة ومثيرة.
+              </p>
+              <div class="timeline-skills">
+                <span class="skill-tag">JavaScript ES6+</span>
+                <span class="skill-tag">DOM Manipulation</span>
+                <span class="skill-tag">Event Handling</span>
+                <span class="skill-tag">APIs Integration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="timeline-item animate-on-scroll">
+            <div class="timeline-card">
+              <div class="timeline-icon">🚀</div>
+              <div class="timeline-number">4</div>
+              <h3 class="timeline-title">التقنيات المتقدمة</h3>
+              <div class="timeline-duration">⏱️ الأسابيع 8-10</div>
+              <p class="timeline-description">
+                انطلق نحو الاحتراف! تعلم أحدث التقنيات والأدوات المستخدمة في الشركات الكبرى واكتسب المهارات التي تميزك في سوق العمل.
+              </p>
+              <div class="timeline-skills">
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Sass/SCSS</span>
+                <span class="skill-tag">Build Tools</span>
+                <span class="skill-tag">Testing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 5 -->
+          <div class="timeline-item animate-on-scroll">
+            <div class="timeline-card">
+              <div class="timeline-icon">💼</div>
+              <div class="timeline-number">5</div>
+              <h3 class="timeline-title">المشاريع والممارسة</h3>
+              <div class="timeline-duration">⏱️ الأسابيع 11-12</div>
+              <p class="timeline-description">
+                طبق ما تعلمته في مشاريع حقيقية! ابني معرض أعمال قوي يؤهلك للحصول على أول وظيفة أو عميل في مجال تطوير الواجهات.
+              </p>
+              <div class="timeline-skills">
+                <span class="skill-tag">Portfolio Building</span>
+                <span class="skill-tag">Real Projects</span>
+                <span class="skill-tag">Deployment</span>
+                <span class="skill-tag">Client Work</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="fab" onclick="scrollToTop()" title="العودة للأعلى">
+    ⬆️
+  </div>
+
+  <!-- Footer will be loaded here -->
+  <div id="footer"></div>
+
+  <!-- JavaScript -->
+  <script>
+    // Create particle system
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 20;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Scroll animations
+    function handleScrollAnimations() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      elements.forEach(el => observer.observe(el));
+    }
+
+    // Timeline item animations with delay
+    function animateTimelineItems() {
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      timelineItems.forEach((item, index) => {
+        item.style.animationDelay = (index * 0.3) + 's';
+      });
+    }
+
+    // Scroll to top function
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Dynamic content loading
+    async function loadContent() {
+      try {
+        const headerResponse = await fetch('header.html');
+        if (headerResponse.ok) {
+          const headerData = await headerResponse.text();
+          document.getElementById('header').innerHTML = headerData;
+        }
+
+        const footerResponse = await fetch('footer.html');
+        if (footerResponse.ok) {
+          const footerData = await footerResponse.text();
+          document.getElementById('footer').innerHTML = footerData;
+        }
+      } catch (error) {
+        console.error('Error loading content:', error);
+      }
+    }
+
+    // Mouse trail effect
+    function createMouseTrail() {
+      let mouseX = 0;
+      let mouseY = 0;
+      let isMouseMoving = false;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        isMouseMoving = true;
+
+        setTimeout(() => {
+          isMouseMoving = false;
+        }, 100);
+      });
+
+      function animateTrail() {
+        if (isMouseMoving) {
+          const trail = document.createElement('div');
+          trail.style.position = 'fixed';
+          trail.style.left = mouseX + 'px';
+          trail.style.top = mouseY + 'px';
+          trail.style.width = '8px';
+          trail.style.height = '8px';
+          trail.style.background = 'radial-gradient(circle, rgba(0,242,255,0.8), transparent)';
+          trail.style.borderRadius = '50%';
+          trail.style.pointerEvents = 'none';
+          trail.style.zIndex = '9999';
+          trail.style.animation = 'fadeOut 1s ease-out forwards';
+          
+          const style = document.createElement('style');
+          style.textContent = `
+            @keyframes fadeOut {
+              0% { opacity: 1; transform: scale(1); }
+              100% { opacity: 0; transform: scale(0); }
+            }
+          `;
+          document.head.appendChild(style);
+          
+          document.body.appendChild(trail);
+          
+          setTimeout(() => {
+            trail.remove();
+            style.remove();
+          }, 1000);
+        }
+        
+        requestAnimationFrame(animateTrail);
+      }
+      
+      animateTrail();
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+      loadContent();
+      createParticles();
+      handleScrollAnimations();
+      animateTimelineItems();
+      createMouseTrail();
+    });
+
+    // Add dynamic hover effects
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.classList.contains('timeline-card')) {
+        e.target.style.background = 'rgba(0, 242, 255, 0.1)';
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.classList.contains('timeline-card')) {
+        e.target.style.background = 'var(--glass-bg)';
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp' && e.ctrlKey) {
+        e.preventDefault();
+        scrollToTop();
+      }
+    });
+  </script>
+
+</body>
+</html>
